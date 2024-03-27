@@ -1,22 +1,22 @@
 #Requires AutoHotkey v2.0
 #Include C:\Users\user\Documents\minebot\Utils\ObjToStr.ahk
 #Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
-#Include C:\Users\user\Documents\minebot\Operation\Interface.ahk
+#Include C:\Users\user\Documents\minebot\Actions\Interface.ahk
 #Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
 
-class PlayerInventory {
-    inventory := {
+class PlayerInterface {
+    Inventory := {
         Package : [],
         Hotbar: [],
     }
 
     ; TODO Разумно ли их так выносить?
     FirstCell := [
-        Elements.PlayerInventory.FirstPlayerInventoryStoreCell.leftTopX,
-        Elements.PlayerInventory.FirstPlayerInventoryStoreCell.leftTopY
+        Elements.PlayerInterface.FirstPlayerInventoryStoreCell.leftTopX,
+        Elements.PlayerInterface.FirstPlayerInventoryStoreCell.leftTopY
     ]
-    cellSize := Elements.PlayerInventory.InventoryCell.size
-    inventoryCreateWordUrl := Elements.PlayerInventory.CreateWord.url
+    cellSize := Elements.PlayerInterface.InventoryCell.size
+    inventoryCreateWordUrl := Elements.PlayerInterface.CreateWord.url
     
     __New() {
         isInventoryUIOpen := 0
@@ -25,15 +25,15 @@ class PlayerInventory {
             isInventoryUIOpen := this.checkInventoryUIOpen()
 
             if isInventoryUIOpen = 0 {
-                openPlayerInterface()
+                openInterface()
             }
         }
 
         this.scanStore()
 
-        Sleep(200)
+        Sleep(100)
 
-        closeInventory()
+        closeInterface()
     }
 
     ; TODO Можно ли как-то универсализировать эту функцию?
@@ -53,7 +53,7 @@ class PlayerInventory {
 
     scanStore() {
         Loop 3 {
-            packageLine := []
+            PackageLine := []
             iteration := A_Index
 
             Loop 9 {
@@ -65,7 +65,7 @@ class PlayerInventory {
                 Item := checkInventoryCellItem([leftTopCoordX, leftTopCoordY], [rightBottomCoordX, rightBottomCoordY])
                 name := Item.name
                 
-                packageLineCell := {
+                PackageLineCell := {
                     row: iteration,
                     column: A_Index,
                     leftTopCellCoords: [ leftTopCoordX, leftTopCoordY ],
@@ -77,15 +77,15 @@ class PlayerInventory {
                 }
 
                 if Item.HasOwnProp("id") {
-                    packageLineCell.id := Item.id
+                    PackageLineCell.id := Item.id
                 }
 
-                packageLine.Push(packageLineCell)
+                PackageLine.Push(packageLineCell)
             }
 
-            this.inventory.package.Push(packageLine)
+            this.Inventory.package.Push(packageLine)
         }
 
-        StringifyAsJSON(this.inventory)
+        StringifyAsJSON(this.Inventory)
     }
 }

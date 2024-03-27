@@ -3,7 +3,7 @@
 #Include C:\Users\user\Documents\minebot\Constant\Items.ahk
 #Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
 
-openPlayerInterface() {
+openInterface() {
     Sleep(20)
     Send "{e down}"
     Sleep(20)
@@ -14,7 +14,7 @@ openPlayerInterface() {
     Sleep(250)
 }
 
-closeInventory() {
+closeInterface() {
     MouseMove(SightPointer[1], SightPointer[2])
     Sleep(20)
     Send "{e down}"

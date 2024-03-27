@@ -3,10 +3,10 @@
 Items := {
     EmptyInventoryCell: {
         id: 1,
-        url: "C:\Users\user\Documents\minebot\Picture\EmptyInventoryCell.png",
+        url: "C:\Users\user\Documents\minebot\Picture\Items\EmptyInventoryCell.png",
     },
     EmptyIngotMold: {
-        id: 2,
-        url: "C:\Users\user\Documents\minebot\Picture\EmptyIngotMold.png",
+        id: 6637,
+        url: "C:\Users\user\Documents\minebot\Picture\Items\EmptyIngotMold.png",
     }
 }
