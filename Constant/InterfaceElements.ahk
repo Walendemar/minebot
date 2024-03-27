@@ -3,7 +3,16 @@
 Elements := {
     PlayerInterface: {
         CreateWord: {
-            url: "C:\Users\user\Documents\minebot\Picture\InterfaceElements\Words\CreateWord.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Words\CreateWord.png"
+        },
+        LeftCorner: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\LeftCorner.png"
+        },
+        RightCorner: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\RightCorner.png"
+        },
+        FirstCell: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\FirstCell.png"
         },
         FirstPlayerInventoryStoreCell: {
             leftTopX: 1041,
@@ -18,43 +27,49 @@ Elements := {
     },
     CrucibleInterface: {
         Sign: {
-            url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Crucible\Sign.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Sign.png"
         },
         Ruler: {
-            url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Crucible\Ruler.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Ruler.png"
         },
         Output: {
-            url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Crucible\Output.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Output.png"
+        },
+        LeftCorner: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\LeftCorner.png"
+        },
+        RightCorner: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\RightCorner.png"
         },
     },
     Tooltip: {
         LeftCorner: {
-            url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\LeftCorner.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\LeftCorner.png"
         },
         RightCorner: {
-            url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\RightCorner.png"
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\RightCorner.png"
         },
         Symbols: {
             Slash: {
-                url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Symbol\Slash.png"
+                url: A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Symbol\Slash.png"
             }
         },
         IdPictures: {
             EmptyMold: {
-                url: "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\ItemId\EmptyMold.png"
+                url: A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\ItemId\EmptyMold.png"
             }
         },
         Numbers: [
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\0.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\1.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\2.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\3.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\4.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\5.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\6.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\7.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\8.png",
-            "C:\Users\user\Documents\minebot\Pictures\InterfaceElement\Tooltip\Numbers\9.png"
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\0.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\1.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\2.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\3.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\4.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\5.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\6.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\7.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\8.png",
+            A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\9.png"
         ]
     }
 }

@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0
-#Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
-#Include C:\Users\user\Documents\minebot\Constant\Items.ahk
-#Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
+
+#Include ..\Constant\InterfaceElements.ahk
+#Include ..\Constant\Items.ahk
+#Include ..\Constant\Screen.ahk
 
 openInterface() {
     Sleep(20)
@@ -9,9 +10,9 @@ openInterface() {
     Sleep(20)
     Send "{e up}"
     Sleep(20)
-    Sleep(250)
+    Sleep(200)
     MouseMove(120, 120)
-    Sleep(250)
+    Sleep(200)
 }
 
 closeInterface() {
@@ -21,7 +22,7 @@ closeInterface() {
     Sleep(20)
     Send "{e up}"
     Sleep(20)
-    Sleep(250)
+    Sleep(200)
 }
 
 checkInventoryCellItem(leftTopCoords, rightBottomCoords, gradation := 0) {

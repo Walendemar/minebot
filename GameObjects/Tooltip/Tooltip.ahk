@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
-#Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
-#Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
-#Include C:\Users\user\Documents\minebot\Utils\ObjToStr.ahk
+#Include ..\..\Constant\Screen.ahk
+#Include ..\..\Constant\InterfaceElements.ahk
+#Include ..\..\Utils\ObjToStr.ahk
 
 class Tooltip {
     Borders := {

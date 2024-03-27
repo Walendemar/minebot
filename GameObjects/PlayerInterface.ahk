@@ -1,24 +1,29 @@
 #Requires AutoHotkey v2.0
-#Include C:\Users\user\Documents\minebot\Utils\ObjToStr.ahk
-#Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
-#Include C:\Users\user\Documents\minebot\Actions\Interface.ahk
-#Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
+#Include ..\Utils\ObjToStr.ahk
+#Include ..\Constant\InterfaceElements.ahk
+#Include ..\Actions\Interface.ahk
+#Include ..\Constant\Screen.ahk
+#Include ..\GameObjects\PlayerInventory.ahk
 
-class PlayerInterface {
-    Inventory := {
-        Package : [],
-        Hotbar: [],
-    }
-
+class PlayerInterface extends PlayerInventory {
     ; TODO Разумно ли их так выносить?
-    FirstCell := [
-        Elements.PlayerInterface.FirstPlayerInventoryStoreCell.leftTopX,
-        Elements.PlayerInterface.FirstPlayerInventoryStoreCell.leftTopY
+    FirstCell := []
+    Corners := [
+        [],
+        []
     ]
-    cellSize := Elements.PlayerInterface.InventoryCell.size
+    isFirstCellFound := 0
+    isCornersFound := 0
+
+    ; picture urls
     inventoryCreateWordUrl := Elements.PlayerInterface.CreateWord.url
+    leftCornerUrl := Elements.PlayerInterface.LeftCorner.url
+    rightCornerUrl := Elements.PlayerInterface.RightCorner.url
+    firstCellUrl := Elements.PlayerInterface.FirstCell.url
     
     __New() {
+        super.__New()
+
         isInventoryUIOpen := 0
 
         While isInventoryUIOpen = 0 {
@@ -29,11 +34,85 @@ class PlayerInterface {
             }
         }
 
-        this.scanStore()
+        this.getCorner()
+        this.getFirstCellCoors()
+        if (this.FirstCell.Length > 0) {
+            this.scanStore(this.FirstCell)
+        } else {
+            MsgBox "error!"
+        }
 
         Sleep(100)
 
         closeInterface()
+    }
+
+    getCorner() {
+        isFoundLeftCorner := ImageSearch(
+            &leftCornerCoordX,
+            &leftCornerCoordY,
+            GameWindow.leftTopX,
+            GameWindow.leftTopY,
+            GameWindow.rightBottomX,
+            GameWindow.rightBottomY,
+            this.leftCornerUrl
+        )
+
+        if (!isFoundLeftCorner) {
+            MsgBox "Error: Not Found - LeftCorner"
+
+            return
+        }
+
+        isFoundRightCorner := ImageSearch(
+            &rightCornerCoordX,
+            &rightCornerCoordY,
+            GameWindow.leftTopX,
+            GameWindow.leftTopY,
+            GameWindow.rightBottomX,
+            GameWindow.rightBottomY,
+            this.rightCornerUrl
+        )
+
+        if (!isFoundLeftCorner) {
+            MsgBox "Error: Not Found - RightCorner"
+
+            return
+        }
+
+        this.Corners := [
+            [
+                leftCornerCoordX,
+                leftCornerCoordY
+            ],
+            [
+                rightCornerCoordX,
+                rightCornerCoordY
+            ]
+        ]
+        this.isCornersFound := 1
+    }
+
+    getFirstCellCoors() {
+        if (!this.isCornersFound) {
+            return
+        }
+
+        isFound := ImageSearch(
+            &firstCellCoordX,
+            &firstCellCoordY,
+            this.Corners[1][1],
+            this.Corners[1][2],
+            this.Corners[2][1],
+            this.Corners[2][2],
+            this.firstCellUrl
+        )
+
+        this.FirstCell := [
+            firstCellCoordX + 3,
+            firstCellCoordY + 3
+        ]
+        this.isFirstCellFound := 1
     }
 
     ; TODO Можно ли как-то универсализировать эту функцию?
@@ -49,43 +128,5 @@ class PlayerInterface {
         )
     
         return isOpen
-    }
-
-    scanStore() {
-        Loop 3 {
-            PackageLine := []
-            iteration := A_Index
-
-            Loop 9 {
-                leftTopCoordX := this.FirstCell[1] + (this.cellSize + 6) * (A_Index - 1)
-                leftTopCoordY := this.FirstCell[2] + (this.cellSize + 6) * (iteration - 1)
-                rightBottomCoordX := leftTopCoordX + this.cellSize
-                rightBottomCoordY := leftTopCoordY + this.cellSize
-
-                Item := checkInventoryCellItem([leftTopCoordX, leftTopCoordY], [rightBottomCoordX, rightBottomCoordY])
-                name := Item.name
-                
-                PackageLineCell := {
-                    row: iteration,
-                    column: A_Index,
-                    leftTopCellCoords: [ leftTopCoordX, leftTopCoordY ],
-                    rightBottomCellCoords: [ rightBottomCoordX, rightBottomCoordY ],
-                    name: name,
-                    amount: 0,
-                    temperature: "",
-                    isTaken: name == "EmptyCell" ? false : true
-                }
-
-                if Item.HasOwnProp("id") {
-                    PackageLineCell.id := Item.id
-                }
-
-                PackageLine.Push(packageLineCell)
-            }
-
-            this.Inventory.package.Push(packageLine)
-        }
-
-        StringifyAsJSON(this.Inventory)
     }
 }

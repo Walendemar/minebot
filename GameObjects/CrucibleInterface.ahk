@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0
-#Include C:\Users\user\Documents\minebot\Constant\Screen.ahk
-#Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
-#Include C:\Users\user\Documents\minebot\GameObjects\Tooltip\CapacityTooltip.ahk
+
+#Include ..\Constant\Screen.ahk
+#Include ..\Constant\InterfaceElements.ahk
+#Include ..\GameObjects\Tooltip\CapacityTooltip.ahk
 
 class CrucibleInterface {
     name := ''

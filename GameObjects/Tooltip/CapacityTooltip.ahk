@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
-#Include C:\Users\user\Documents\minebot\GameObjects\Tooltip\Tooltip.ahk
-#Include C:\Users\user\Documents\minebot\Constant\InterfaceElements.ahk
+#Include ..\..\GameObjects\Tooltip\Tooltip.ahk
+#Include ..\..\Constant\InterfaceElements.ahk
 
 class CapacityTooltip extends Tooltip {
     slashUrl := Elements.Tooltip.Symbols.Slash.url
