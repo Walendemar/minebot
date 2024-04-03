@@ -1,24 +1,17 @@
 #Requires AutoHotkey v2.0
 
 Elements := {
-    PlayerInterface: {
-        CreateWord: {
-            url: A_WorkingDir . "\Pictures\InterfaceElements\Words\CreateWord.png"
-        },
+    Interface: {
         LeftCorner: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\LeftCorner.png"
         },
         RightCorner: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\RightCorner.png"
         },
+    },
+    PlayerInterface: {
         FirstCell: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\FirstCell.png"
-        },
-        FirstPlayerInventoryStoreCell: {
-            leftTopX: 1041,
-            leftTopY: 713,
-            rightBottomX: 1088,
-            rightBottomY: 760
         },
         InventoryCell: {
             size: 48,
@@ -26,21 +19,12 @@ Elements := {
         }
     },
     CrucibleInterface: {
-        Sign: {
-            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Sign.png"
-        },
         Ruler: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Ruler.png"
         },
         Output: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Output.png"
-        },
-        LeftCorner: {
-            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\LeftCorner.png"
-        },
-        RightCorner: {
-            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\RightCorner.png"
-        },
+        }
     },
     Tooltip: {
         LeftCorner: {
@@ -71,5 +55,16 @@ Elements := {
             A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\8.png",
             A_WorkingDir . "\Pictures\InterfaceElements\Tooltip\Numbers\9.png"
         ]
+    },
+    Signs: {
+        Crucible: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Sign.png"
+        },
+        PlayerInterface: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\Sign.png"
+        },
+        Anvil: {
+            url: A_WorkingDir . "\Pictures\InterfaceElements\Anvil\Sign.png"
+        }
     }
 }
