@@ -70,36 +70,98 @@ class InterfaceShell {
             this.getInterfaceType()
         }
 
-        isOpen := ImageSearch(
-            &xCoord,
-            &yCoord,
-            GameWindow.leftTopX,
-            GameWindow.leftTopY,
-            GameWindow.rightBottomX,
-            GameWindow.rightBottomY,
-            this.Signs.%this.interfaceType%.url
-        )
-    
-        return isOpen
-    }
+        isOpen := 0
 
-    getInterfaceType() {
-        for key, value in this.Signs.OwnProps() {
-            isFound := ImageSearch(
+        if (this.Signs.%this.interfaceType%.HasOwnProp("url")) {
+            isOpen := ImageSearch(
                 &xCoord,
                 &yCoord,
                 GameWindow.leftTopX,
                 GameWindow.leftTopY,
                 GameWindow.rightBottomX,
                 GameWindow.rightBottomY,
-                value.url
+                this.Signs.%this.interfaceType%.url
+            )
+        }
+
+        
+        if (this.Signs.%this.interfaceType%.HasOwnProp("firstUrl") and this.Signs.%this.interfaceType%.HasOwnProp("secondUrl")) {
+            isFirstOpen := ImageSearch(
+                &xCoord,
+                &yCoord,
+                GameWindow.leftTopX,
+                GameWindow.leftTopY,
+                GameWindow.rightBottomX,
+                GameWindow.rightBottomY,
+                this.Signs.%this.interfaceType%.firstUrl
             )
 
-            if (isFound) {
-                this.interfaceType := key
+            isSecondOpen := ImageSearch(
+                &xCoord,
+                &yCoord,
+                GameWindow.leftTopX,
+                GameWindow.leftTopY,
+                GameWindow.rightBottomX,
+                GameWindow.rightBottomY,
+                this.Signs.%this.interfaceType%.secondUrl
+            )
 
-                return
+            isOpen := isFirstOpen and isSecondOpen
+        }
+    
+        return isOpen
+    }
+
+    getInterfaceType() {
+        for key, value in this.Signs.OwnProps() {
+            if (value.HasOwnProp("url")) {
+                isFound := ImageSearch(
+                    &xCoord,
+                    &yCoord,
+                    GameWindow.leftTopX,
+                    GameWindow.leftTopY,
+                    GameWindow.rightBottomX,
+                    GameWindow.rightBottomY,
+                    value.url
+                )
+
+                if (isFound) {
+                    this.interfaceType := key
+                    
+                    return
+                }
+            }
+
+            if (value.HasOwnProp("firstUrl") and value.HasOwnProp("secondUrl")) {
+                isFoundFirst := ImageSearch(
+                    &xCoord,
+                    &yCoord,
+                    GameWindow.leftTopX,
+                    GameWindow.leftTopY,
+                    GameWindow.rightBottomX,
+                    GameWindow.rightBottomY,
+                    value.firstUrl
+                )
+
+                isFoundSecond := ImageSearch(
+                    &xCoord,
+                    &yCoord,
+                    GameWindow.leftTopX,
+                    GameWindow.leftTopY,
+                    GameWindow.rightBottomX,
+                    GameWindow.rightBottomY,
+                    value.secondUrl
+                )
+
+
+                if (isFoundFirst and isFoundSecond) {
+                    this.interfaceType := key
+    
+                    return
+                } 
             }
         }
+
+         MsgBox "Error: Not Found - interfaceType"
     }
 }

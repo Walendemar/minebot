@@ -61,7 +61,8 @@ Elements := {
             url: A_WorkingDir . "\Pictures\InterfaceElements\Crucible\Sign.png"
         },
         PlayerInterface: {
-            url: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\Sign.png"
+            firstUrl: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\Sign1.png",
+            secondUrl: A_WorkingDir . "\Pictures\InterfaceElements\PlayerInterface\Sign2.png"
         },
         Anvil: {
             url: A_WorkingDir . "\Pictures\InterfaceElements\Anvil\Sign.png"
